@@ -1,0 +1,5 @@
+package com.Nirmitee.Entity;
+
+public class VehicleDetails {
+
+}

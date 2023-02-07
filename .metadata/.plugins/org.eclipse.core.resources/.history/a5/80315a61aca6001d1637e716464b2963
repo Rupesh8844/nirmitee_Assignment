@@ -1,0 +1,5 @@
+package com.Nirmitee.Repository;
+
+public interface VehicleRepository {
+
+}

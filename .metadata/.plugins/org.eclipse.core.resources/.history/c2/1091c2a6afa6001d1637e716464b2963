@@ -1,0 +1,18 @@
+package com.Nirmitee.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.Nirmitee.Repository.ManufacturerDao;
+import com.Nirmitee.Repository.VehicleDao;
+
+@Service
+public class VehicleServiceImpl implements VehicleService{
+
+	  @Autowired
+	  private VehicleDao vehicleDao;
+	  
+	  @Autowired
+	  private ManufacturerDao manufacturerDao;
+	
+}

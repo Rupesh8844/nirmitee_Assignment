@@ -1,0 +1,63 @@
+package com.Nirmitee.Service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.Nirmitee.Entity.Vehicle;
+import com.Nirmitee.Repository.ManufacturerDao;
+import com.Nirmitee.Repository.VehicleDao;
+
+@Service
+public class VehicleServiceImpl implements VehicleService{
+
+	  @Autowired
+	  private VehicleDao vehicleDao;
+	  
+	  @Autowired
+	  private ManufacturerDao manufacturerDao;
+
+	  
+	@Override
+	public Vehicle createVehicle(Vehicle vehicle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+	@Override
+	public Vehicle getVehicleById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+	@Override
+	public Vehicle updateVehicle(Integer id, Vehicle vehicleDetails) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	@Override
+	public String deleteVehicle(Integer id) {
+		
+		Optional<Vehicle> opt = vehicleDao.findById(id);
+		
+		if(opt.isEmpty()) {
+			throw new VehicleException("Vehicle not found with id:- " + id);
+		}
+		
+		Vehicle v = opt.get();
+		vehicleDao.delete(v);
+		
+		
+		
+	}
+	
+	
+}

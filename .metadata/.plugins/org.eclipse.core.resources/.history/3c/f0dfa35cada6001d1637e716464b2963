@@ -1,0 +1,15 @@
+package com.Nirmitee.Service;
+
+import com.Nirmitee.Entity.Vehicle;
+
+public interface VehicleService {
+
+	public  Vehicle createVehicle(Vehicle vehicle);
+
+    public  Vehicle getVehicleById(Long id);
+
+	public  Vehicle updateVehicle(Long id, Vehicle vehicleDetails);
+
+	public void deleteVehicle(Long id);
+	
+}

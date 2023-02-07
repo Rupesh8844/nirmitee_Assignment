@@ -1,0 +1,101 @@
+package com.Nirmitee.Service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.Nirmitee.Entity.Manufacturer;
+import com.Nirmitee.Entity.Vehicle;
+import com.Nirmitee.Exceptions.VehicleException;
+import com.Nirmitee.Repository.ManufacturerDao;
+import com.Nirmitee.Repository.VehicleDao;
+
+@Service
+public class VehicleServiceImpl implements VehicleService{
+
+	  @Autowired
+	  private VehicleDao vehicleDao;
+	  
+	  @Autowired
+	  private ManufacturerDao manufacturerDao;
+
+	  
+	@Override
+	public Vehicle createVehicle(Vehicle vehicle) {
+		
+		Manufacturer manufacturer = vehicle.getDetails().getManufacturer();
+		
+		manufacturerDao.save(manufacturer);
+		
+		return vehicleDao.save(vehicle);
+		
+		
+	}
+	
+	
+
+	@Override
+	public Vehicle getVehicleById(Integer id) {
+
+		Optional<Vehicle> opt = vehicleDao.findById(id);
+		
+		if(opt.isEmpty()) {
+			throw new VehicleException("Vehicle not found with id:- " + id);
+		}
+		
+		Vehicle v = opt.get();
+		
+		return v;
+	}
+	
+	
+
+	@Override
+	public Vehicle updateVehicle(Integer id, Vehicle vehicleDetails) {
+		
+		Optional<Vehicle> opt = vehicleDao.findById(id);
+		
+		if(opt.isEmpty()) {
+			throw new VehicleException("Vehicle not found with id:- " + id);
+		}
+		
+		Vehicle v = opt.get();
+		
+		v.setConditions(vehicleDetails.getConditions());
+		v.setDetails(vehicleDetails.getDetails());
+		v.setLocation(vehicleDetails.getLocation());
+		
+		
+        Manufacturer manufacturer = vehicleDetails.getDetails().getManufacturer();
+		
+		manufacturerDao.save(manufacturer);
+		
+		 Vehicle updatedVehicle =  vehicleDao.save(v);
+		 
+		 return updatedVehicle;
+		
+	}
+
+	
+	
+	
+	@Override
+	public String deleteVehicle(Integer id) {
+		
+		Optional<Vehicle> opt = vehicleDao.findById(id);
+		
+		if(opt.isEmpty()) {
+			throw new VehicleException("Vehicle not found with id:- " + id);
+		}
+		
+		Vehicle v = opt.get();
+		vehicleDao.delete(v);
+		
+		return "Vehicle deleted Sucessfully";
+		
+		
+	}
+	
+	
+}
