@@ -24,7 +24,7 @@ public class VehicleContoller {
 	
 	
 	@PostMapping("/")
-	  public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
+	  public ResponseEntity<Vehicle> createVehicleHandler(@RequestBody Vehicle vehicle) {
 		
 	    Vehicle createdVehicle = vehicleService.createVehicle(vehicle);
 	    
@@ -33,7 +33,7 @@ public class VehicleContoller {
 	
 	
 	@GetMapping("/{id}")
-    public ResponseEntity<Vehicle> getVehicle(@PathVariable Integer id) {
+    public ResponseEntity<Vehicle> getVehicleHandler(@PathVariable Integer id) {
 		
 		Vehicle vehicle = vehicleService.getVehicleById(id);
 		
@@ -42,7 +42,7 @@ public class VehicleContoller {
 	
 	
 	@PutMapping("/{id}")
-    public ResponseEntity<Vehicle> updateVehicle(@PathVariable Integer id,@RequestBody Vehicle vehicle) {
+    public ResponseEntity<Vehicle> updateVehicleHandler(@PathVariable Integer id,@RequestBody Vehicle vehicle) {
 		
 		Vehicle updatedVehicle = vehicleService.updateVehicle(id, vehicle);
 		
@@ -51,7 +51,7 @@ public class VehicleContoller {
 	
 	
 	@DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteVehicle(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteVehicleHandler(@PathVariable Integer id) {
 		
 		String string = vehicleService.deleteVehicle(id);
 		
